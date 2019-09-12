@@ -13,7 +13,7 @@
 
 <script>
   $(function() {
-    $.get("http://localhost:3030/tasks/").success( function( data ) {
+    $.get("http://localhost:3030/tasks").success( function( data ) {
       var htmlString = "";
 
       $.each(data, function(index,  task) {
