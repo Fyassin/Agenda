@@ -1,9 +1,31 @@
-<section class="todoapp">
+<section class="agendaapp">
   <header class="header">
     <h1>Agenda</h1>
   </header>
 
   <section class="main">
+  	<ul class="agenda-list">
+  		<li>
+  			<div class="view">
+  				<input  class="toggle" type="checkbox">
+  				<label>Do Laundry</label>
+  			</div>
+  			<div class="view">
+  				<input  class="toggle" type="checkbox">
+  				<label>Make Bed</label>
+  			</div>
+  		</li>
+  	</ul>
 
   </section>
 </section>
+
+<script>
+  $(function() {
+    $.get("http://localhost:3030/tasks").success( function( data ) {
+      $.each(data, function(index,  task) {
+        console.log(task.title);
+      });
+    });
+  });
+</script>
