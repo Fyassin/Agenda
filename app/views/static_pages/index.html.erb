@@ -13,12 +13,13 @@
 
 <script>
   $(function() {
-    $.get("http://localhost:3030/tasks").success( function( data ) {
+    $.get("/tasks").success( function( data ) {
       var htmlString = "";
 
       $.each(data, function(index,  task) {
         var checkedStatus = task.done ? "checked" : "";
         var liElement = '<li><div class="view"><input class="toggle" type="checkbox"' +
+        " data-id='" + task.id + "'" +
         checkedStatus +
         '><label>' +
          task.title +
@@ -27,6 +28,23 @@
       });
       var ulAgenda = $('.agenda-list');
       ulAgenda.html(htmlString);
+
+      $('.toggle').change(function(e) {
+        var itemId = $(e.target).data("id");
+        console.log(itemId);
+
+        var doneValue = Boolean($(e.target).is(':checked'));
+        console.log("done:", doneValue);
+
+        $.post("/tasks/" + itemId, {
+          _method: "PUT",
+          task: {
+            done: doneValue
+          }
+        });
+
+      });
+
     });
   });
 </script>
