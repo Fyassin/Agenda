@@ -65,6 +65,7 @@ $(function() {
       var ulAgendas = $('.agenda-list');
       ulAgendas.append(htmlString);
       $('.toggle').click(toggleTask);
+      $('.new-todo').val('');
     });
   });
 
